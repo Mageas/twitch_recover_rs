@@ -3,22 +3,18 @@ use dialoguer::{theme::ColorfulTheme, Input, Select};
 
 use color_eyre::eyre::{Context, Result};
 
-mod error;
-pub use error::{TwitchRecoverError, TwitchRecoverResult};
-
-mod stream;
-
-mod streamer;
-use streamer::{Streamer, StreamerOpt};
+use clap::Parser;
 
 mod constants;
-
+mod error;
+mod recover;
+mod stream;
+mod streamer;
 mod utils;
 
-mod recover;
+pub use error::{TwitchRecoverError, TwitchRecoverResult};
 use recover::Recover;
-
-use clap::Parser;
+use streamer::{Streamer, StreamerOpt};
 
 #[tokio::main]
 async fn main() -> Result<()> {
