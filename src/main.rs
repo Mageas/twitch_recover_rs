@@ -1,3 +1,5 @@
+#![windows_subsystem = "windows"]
+
 use dialoguer::console::Term;
 use dialoguer::{theme::ColorfulTheme, Input, Select};
 
@@ -60,11 +62,6 @@ async fn main() -> Result<()> {
         .context("The stream could not be found; it may have expired (Twitch usually removes VODs 30 days after the stream)")?;
 
     println!("{url}");
-
-    // Do not close the terminal after printing the URL (On Windows)
-    if cfg!(windows) {
-        std::io::stdin().read_line(&mut String::new())?;
-    }
 
     Ok(())
 }
