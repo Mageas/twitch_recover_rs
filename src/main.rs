@@ -61,6 +61,11 @@ async fn main() -> Result<()> {
 
     println!("{url}");
 
+    // Do not close the terminal after printing the URL (On Windows)
+    if cfg!(windows) {
+        std::io::stdin().read_line(&mut String::new())?;
+    }
+
     Ok(())
 }
 
